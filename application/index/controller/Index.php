@@ -22,9 +22,11 @@ class Index
     public function reflect()
     {
         $obj = new \ReflectionClass(new \A());
-        dump($obj);
         $obj2 = $obj->newInstance();
-        dump($obj2);
-        dump($obj->getMethods());
+        $methods = $obj->getMethods();
+        foreach ($methods as $method)
+        {
+            var_dump($method->getDocComment());
+        }
     }
 }
