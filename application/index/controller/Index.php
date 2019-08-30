@@ -34,6 +34,8 @@ class Index
         $method = new \ReflectionMethod($a,'def');
         var_dump($method->invoke($a,111));
 
+
+
     }
 
     public function container()
