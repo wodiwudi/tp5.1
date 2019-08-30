@@ -12,4 +12,10 @@ class Index
     {
         return 'hello,' . $name;
     }
+
+    public function test()
+    {
+        \Register::set('test',new \A());
+        dump(\Register::get('test')->abc());
+    }
 }
