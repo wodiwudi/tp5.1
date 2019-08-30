@@ -18,4 +18,13 @@ class Index
         \Register::set('test',new \A());
         dump(\Register::get('test')->abc());
     }
+
+    public function reflect()
+    {
+        $obj = new \ReflectionClass(new \A());
+        dump($obj);
+        $obj2 = $obj->newInstance();
+        dump($obj2);
+        dump($obj->getMethods());
+    }
 }
