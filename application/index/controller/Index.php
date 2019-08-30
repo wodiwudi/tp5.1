@@ -26,7 +26,9 @@ class Index
         $methods = $obj->getMethods();
         foreach ($methods as $method)
         {
-            var_dump($method->getDocComment());
+         //   var_dump($method->getDocComment());
         }
+        $pro = $obj->getProperties();
+        var_export($pro);
     }
 }
