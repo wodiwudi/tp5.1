@@ -1,6 +1,6 @@
 <?php
 namespace app\index\controller;
-
+use di\Container;
 class Index
 {
     public function index()
@@ -31,9 +31,16 @@ class Index
         }
         $pro = $obj->getProperties();
         //调用反射的方法
-        var_dump($obj2->abc());
-        $method = new \ReflectionMethod('abc');
-        $method->invoke($a);
+        $method = new \ReflectionMethod($a,'def');
+        var_dump($method->invoke($a,111));
 
+    }
+
+    public function container()
+    {
+        Container::set('person',new \di\Person());
+        Container::set('person',new \di\Car());
+        $obj = Container::get('person');
+        var_dump($obj);
     }
 }
