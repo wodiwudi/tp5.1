@@ -21,7 +21,8 @@ class Index
 
     public function reflect()
     {
-        $obj = new \ReflectionClass(new \A());
+        $a = new \A();
+        $obj = new \ReflectionClass($a);
         $obj2 = $obj->newInstance();
         $methods = $obj->getMethods();
         foreach ($methods as $method)
@@ -29,6 +30,10 @@ class Index
          //   var_dump($method->getDocComment());
         }
         $pro = $obj->getProperties();
-        var_export($pro);
+        //调用反射的方法
+        var_dump($obj2->abc());
+        $method = new \ReflectionMethod('abc');
+        $method->invoke($a);
+
     }
 }

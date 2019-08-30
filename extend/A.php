@@ -17,8 +17,8 @@ class A
     /**
      * @return string
      */
-  public function def()
+  public function def($a)
   {
-      return 'def';
+      return $a;
   }
 }
