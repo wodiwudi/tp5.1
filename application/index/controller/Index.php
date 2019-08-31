@@ -1,5 +1,6 @@
 <?php
 namespace app\index\controller;
+use di\Acount;
 use di\Container;
 class Index
 {
@@ -45,5 +46,11 @@ class Index
         $args[] = 1;
         $obj = Container::get('person',$args);
         dump($obj->buy());
+    }
+
+    public function acount()
+    {
+        new Acount();
+        var_dump(count(new Acount()));
     }
 }
