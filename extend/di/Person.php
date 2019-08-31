@@ -3,8 +3,14 @@
 namespace di;
 class Person
 {
-  public function buy($obj)
-  {
+    private $obj = null;
+   public function __construct( Car $obj,$default = 1)
+   {
+       $this->obj = $obj;
+   }
 
+    public function buy()
+  {
+      return ($this->obj)->money();
   }
 }

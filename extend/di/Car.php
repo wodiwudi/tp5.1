@@ -5,6 +5,6 @@ class Car
 {
     public function money()
     {
-
+        return '买车';
     }
 }

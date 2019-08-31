@@ -40,9 +40,9 @@ class Index
 
     public function container()
     {
-        Container::set('person',new \di\Person());
-        Container::set('person',new \di\Car());
+        Container::set('person',"\di\person");
+        Container::set('car',"\di\car");
         $obj = Container::get('person');
-        var_dump($obj);
+        dump($obj->buy());
     }
 }
