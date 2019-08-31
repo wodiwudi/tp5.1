@@ -21,7 +21,7 @@ class Container
     }
 
     //使用反射获取
-    public static function get($key)
+    public static function get($key,$args = [])
     {
       if(isset(self::$instances[$key]))
       {
@@ -47,13 +47,17 @@ class Container
             $class = $param->getClass();
             if(is_null($class))
             {
-                //throw new \Exception("不存在的类{$param}");
             }
             else{
                 $classname = explode('\\',$class->name);
                 $key = lcfirst($classname[count($classname)-1]);
                $arr[] = self::get($key);
             }
+        }
+        //额外参数的处理
+        if(!empty($args))
+        {
+            $arr = array_merge($arr,$args);
         }
         return $reflect->newInstanceArgs($arr);
 

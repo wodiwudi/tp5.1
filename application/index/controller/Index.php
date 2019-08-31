@@ -42,7 +42,8 @@ class Index
     {
         Container::set('person',"\di\person");
         Container::set('car',"\di\car");
-        $obj = Container::get('person');
+        $args[] = 1;
+        $obj = Container::get('person',$args);
         dump($obj->buy());
     }
 }

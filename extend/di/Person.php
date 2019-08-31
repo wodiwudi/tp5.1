@@ -4,13 +4,15 @@ namespace di;
 class Person
 {
     private $obj = null;
-   public function __construct( Car $obj,$default = 1)
+    private $a = null;
+   public function __construct( Car $obj,$default)
    {
        $this->obj = $obj;
+       $this->a = $default;
    }
 
     public function buy()
   {
-      return ($this->obj)->money();
+      return ($this->obj)->money().'|'.($this->a);
   }
 }
