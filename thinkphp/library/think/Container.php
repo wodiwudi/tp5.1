@@ -86,6 +86,7 @@ class Container implements ArrayAccess, IteratorAggregate, Countable
         'rule_name'             => route\RuleName::class,
         // 接口依赖注入
         'think\LoggerInterface' => Log::class,
+        'zxw'                   => \app\common\Facade::class,
     ];
 
     /**

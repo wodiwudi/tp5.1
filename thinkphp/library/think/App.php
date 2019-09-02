@@ -151,7 +151,6 @@ class App extends Container
     public function path($path)
     {
         $this->appPath = $path ? realpath($path) . DIRECTORY_SEPARATOR : $this->getAppPath();
-
         return $this;
     }
 
@@ -163,14 +162,15 @@ class App extends Container
     public function initialize()
     {
         if ($this->initialized) {
+            //保证只能调用一次
             return;
         }
 
         $this->initialized = true;
-        $this->beginTime   = microtime(true);
-        $this->beginMem    = memory_get_usage();
+        $this->beginTime   = microtime(true);  //浮点形式的微妙数
+        $this->beginMem    = memory_get_usage();  //内存使用状况
 
-        $this->rootPath    = dirname($this->appPath) . DIRECTORY_SEPARATOR;
+        $this->rootPath    = dirname($this->appPath) . DIRECTORY_SEPARATOR; //application的上一级
         $this->runtimePath = $this->rootPath . 'runtime' . DIRECTORY_SEPARATOR;
         $this->routePath   = $this->rootPath . 'route' . DIRECTORY_SEPARATOR;
         $this->configPath  = $this->rootPath . 'config' . DIRECTORY_SEPARATOR;

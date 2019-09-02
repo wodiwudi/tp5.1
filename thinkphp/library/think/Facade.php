@@ -57,10 +57,11 @@ class Facade
      */
     protected static function createFacade($class = '', $args = [], $newInstance = false)
     {
+        //static::class 为本类
         $class = $class ?: static::class;
 
         $facadeClass = static::getFacadeClass();
-
+        //$facadeClass = 'config';
         if ($facadeClass) {
             $class = $facadeClass;
         } elseif (isset(self::$bind[$class])) {
@@ -120,6 +121,8 @@ class Facade
     // 调用实际类的方法
     public static function __callStatic($method, $params)
     {
+        //$method =get
+        //获取think\config里面的get方法 createFacade()相
         return call_user_func_array([static::createFacade(), $method], $params);
     }
 }

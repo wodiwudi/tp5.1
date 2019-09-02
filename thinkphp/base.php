@@ -49,4 +49,5 @@ Loader::addClassAlias([
     'Url'      => facade\Url::class,
     'Validate' => facade\Validate::class,
     'View'     => facade\View::class,
+    'Zxw'      => facade\Zxw::class,
 ]);

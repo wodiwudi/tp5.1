@@ -11,7 +11,8 @@ class Index
 
     public function hello($name = 'ThinkPHP5')
     {
-        return 'hello,' . $name;
+    echo memory_get_peak_usage().PHP_EOL;
+        echo memory_get_usage();
     }
 
     public function test()
@@ -52,5 +53,13 @@ class Index
     {
         new Acount();
         var_dump(count(new Acount()));
+    }
+    public function facade()
+    {
+        //实际的Facade类调用
+        $obj = new \app\common\Facade();
+        echo $obj->abcd();
+
+        var_dump( \Zxw::abcd());
     }
 }
