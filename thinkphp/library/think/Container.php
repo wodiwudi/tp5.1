@@ -259,21 +259,21 @@ class Container implements ArrayAccess, IteratorAggregate, Countable
      */
     public function make($abstract, $vars = [], $newInstance = false)
     {
+        //$abstract = app
         if (true === $vars) {
             // 总是创建新的实例化对象
             $newInstance = true;
             $vars        = [];
         }
-
         $abstract = isset($this->name[$abstract]) ? $this->name[$abstract] : $abstract;
-
+        //$abstract = app
         if (isset($this->instances[$abstract]) && !$newInstance) {
             return $this->instances[$abstract];
         }
 
         if (isset($this->bind[$abstract])) {
             $concrete = $this->bind[$abstract];
-
+            //$concrete = think\App
             if ($concrete instanceof Closure) {
                 $object = $this->invokeFunction($concrete, $vars);
             } else {
@@ -281,11 +281,13 @@ class Container implements ArrayAccess, IteratorAggregate, Countable
                 return $this->make($concrete, $vars, $newInstance);
             }
         } else {
+            //$abstract = think\App
             $object = $this->invokeClass($abstract, $vars);
         }
 
         if (!$newInstance) {
             $this->instances[$abstract] = $object;
+            //$this->instances[think\App] = $object
         }
 
         return $object;
@@ -433,7 +435,7 @@ class Container implements ArrayAccess, IteratorAggregate, Countable
             }
 
             $constructor = $reflect->getConstructor();
-
+            //如果没有构造函数，$args = [];
             $args = $constructor ? $this->bindParams($constructor, $vars) : [];
 
             return $reflect->newInstanceArgs($args);
@@ -453,6 +455,7 @@ class Container implements ArrayAccess, IteratorAggregate, Countable
     protected function bindParams($reflect, $vars = [])
     {
         if ($reflect->getNumberOfParameters() == 0) {
+            //如果参数列表为空则返回空数组
             return [];
         }
 
