@@ -552,6 +552,7 @@ class App extends Container
         $files = scandir($this->routePath);
         foreach ($files as $file) {
             if (strpos($file, '.php')) {
+                //是.php文件
                 $filename = $this->routePath . $file;
                 // 导入路由配置
                 $rules = include $filename;
@@ -560,10 +561,11 @@ class App extends Container
                 }
             }
         }
-
+        //false
         if ($this->route->config('route_annotation')) {
             // 自动生成路由定义
             if ($this->appDebug) {
+                //如果打开调试模式
                 $suffix = $this->route->config('controller_suffix') || $this->route->config('class_suffix');
                 $this->build->buildRoute($suffix);
             }
