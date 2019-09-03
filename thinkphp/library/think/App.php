@@ -171,14 +171,14 @@ class App extends Container
         $this->beginMem    = memory_get_usage();  //内存使用状况
 
         $this->rootPath    = dirname($this->appPath) . DIRECTORY_SEPARATOR; //application的上一级
-        $this->runtimePath = $this->rootPath . 'runtime' . DIRECTORY_SEPARATOR;
-        $this->routePath   = $this->rootPath . 'route' . DIRECTORY_SEPARATOR;
-        $this->configPath  = $this->rootPath . 'config' . DIRECTORY_SEPARATOR;
+        $this->runtimePath = $this->rootPath . 'runtime' . DIRECTORY_SEPARATOR;  //runtime目录位置
+        $this->routePath   = $this->rootPath . 'route' . DIRECTORY_SEPARATOR;  //route目录位置
+        $this->configPath  = $this->rootPath . 'config' . DIRECTORY_SEPARATOR;  //config目录位置
 
         static::setInstance($this);
 
         $this->instance('app', $this);
-
+        //相当于把App中设置的属性进行了更新
         // 加载环境变量配置文件
         if (is_file($this->rootPath . '.env')) {
             $this->env->load($this->rootPath . '.env');
@@ -200,7 +200,7 @@ class App extends Container
             'extend_path'  => $this->rootPath . 'extend' . DIRECTORY_SEPARATOR,
             'vendor_path'  => $this->rootPath . 'vendor' . DIRECTORY_SEPARATOR,
         ]);
-
+        //$this->>namespace = 'app'
         $this->namespace = $this->env->get('app_namespace', $this->namespace);
         $this->env->set('app_namespace', $this->namespace);
 
@@ -270,9 +270,10 @@ class App extends Container
         // 定位模块目录
         $module = $module ? $module . DIRECTORY_SEPARATOR : '';
         $path   = $this->appPath . $module;
-
+        //$path = ..../application    $module = ''
         // 加载初始化文件
         if (is_file($path . 'init.php')) {
+            echo 1;
             include $path . 'init.php';
         } elseif (is_file($this->runtimePath . $module . 'init.php')) {
             include $this->runtimePath . $module . 'init.php';
@@ -327,9 +328,9 @@ class App extends Container
             }
         }
 
-        $this->setModulePath($path);
 
         if ($module) {
+            $this->setModulePath($path);
             // 对容器中的对象实例进行配置更新
             $this->containerConfigUpdate($module);
         }

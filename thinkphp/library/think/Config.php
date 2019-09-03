@@ -201,6 +201,7 @@ class Config implements \ArrayAccess
      */
     public function pull($name)
     {
+        //$name = database
         $name = strtolower($name);
         //yaconf是否存在
         if ($this->yaconf) {

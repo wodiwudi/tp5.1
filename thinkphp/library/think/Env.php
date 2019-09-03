@@ -45,12 +45,13 @@ class Env
      */
     public function get($name = null, $default = null, $php_prefix = true)
     {
+        //$name = app_namespace  $default = app
         if (is_null($name)) {
             return $this->data;
         }
 
         $name = strtoupper(str_replace('.', '_', $name));
-
+        //$name = APP_NAMESPACE
         if (isset($this->data[$name])) {
             return $this->data[$name];
         }
@@ -63,9 +64,9 @@ class Env
         if ($php_prefix) {
             $name = 'PHP_' . $name;
         }
-
+        //$name = PHP_APP_NAMESPACE
         $result = getenv($name);
-
+        //$result = false
         if (false === $result) {
             return $default;
         }
