@@ -56,6 +56,7 @@ class RuleItem extends Rule
      */
     public function setRule($rule)
     {
+       //如果不是完整匹配  $rule = '' 或 / 或者 hello/:name 或者 hello/[:name] 或 hello/name
         if ('$' == substr($rule, -1, 1)) {
             // 是否完整匹配
             $rule = substr($rule, 0, -1);
@@ -71,6 +72,7 @@ class RuleItem extends Rule
 
         if (false !== strpos($rule, ':')) {
             $this->rule = preg_replace(['/\[\:(\w+)\]/', '/\:(\w+)/'], ['<\1?>', '<\1>'], $rule);
+            //$this->>rule = hello/<name>  或者 hello/<name? >
         } else {
             $this->rule = $rule;
         }

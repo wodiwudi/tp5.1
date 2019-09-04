@@ -11,6 +11,7 @@ class Index
 
     public function hello($name = 'ThinkPHP5')
     {
+        //halt(input());
     echo memory_get_peak_usage().PHP_EOL;
         echo memory_get_usage();
     }

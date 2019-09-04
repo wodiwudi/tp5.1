@@ -438,12 +438,13 @@ class RuleGroup extends Rule
         }
 
         $method = strtolower($method);
-
+        //$rule = think
         if ('/' === $rule || '' === $rule) {
             // 首页自动完整匹配
             $rule .= '$';
+            //$rule = /$  或者 $
         }
-
+        //$name = index/hello
         // 创建路由规则实例
         $ruleItem = new RuleItem($this->router, $this, $name, $rule, $route, $method, $option, $pattern);
 
