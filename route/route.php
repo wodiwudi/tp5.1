@@ -15,9 +15,9 @@
 //    return 'hello,ThinkPHP5!';
 //});
 
-//Route::get('hello/name', 'index/hello');
+Route::get('hello/:name', 'index/hello');
 
-Route::get('hello/[:name]', 'index/hello');
+//Route::get('hello/[:name]', 'index/hello');
 return [
 
 ];

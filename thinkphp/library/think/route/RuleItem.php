@@ -117,10 +117,13 @@ class RuleItem extends Rule
      */
     protected function setRuleName($first = false)
     {
+        //$this->>name = 'index/hello'
         if ($this->name) {
-            $vars = $this->parseVar($this->rule);
+            //$this->>rule = hello/<name>
+            $vars = $this->parseVar($this->rule); //解析
+            //$vars = ["name"] => 1
             $name = strtolower($this->name);
-
+            //处理$suffix变量
             if (isset($this->option['ext'])) {
                 $suffix = $this->option['ext'];
             } elseif ($this->parent->getOption('ext')) {
@@ -128,9 +131,17 @@ class RuleItem extends Rule
             } else {
                 $suffix = null;
             }
-
+            //$suffix为null
             $value = [$this->rule, $vars, $this->parent->getDomain(), $suffix, $this->method];
-
+            //array(5) {
+            //  [0] => string(12) "hello/<name>"
+            //  [1] => array(1) {
+            //    ["name"] => int(1)
+            //  }
+            //  [2] => string(9) "localhost"
+            //  [3] => NULL
+            //  [4] => string(3) "get"
+            //}
             Container::get('rule_name')->set($name, $value, $first);
         }
 

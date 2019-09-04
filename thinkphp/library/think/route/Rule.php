@@ -1076,20 +1076,22 @@ abstract class Rule
         $var = [];
 
         if (preg_match_all('/<\w+\??>/', $rule, $matches)) {
+
             foreach ($matches[0] as $name) {
+                //$name = <name>
                 $optional = false;
 
                 if (strpos($name, '?')) {
-                    $name     = substr($name, 1, -2);
+                    //是否是可选参数
+                    $name     = substr($name, 1, -2);  //将<>与?取出
                     $optional = true;
                 } else {
-                    $name = substr($name, 1, -1);
+                    $name = substr($name, 1, -1);  //将 <> 取出
                 }
-
                 $var[$name] = $optional ? 2 : 1;
             }
         }
-
+        //$var = ['name'] = 1 为 动态参数  2为可选参数
         return $var;
     }
 
